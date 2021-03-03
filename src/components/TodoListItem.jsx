@@ -3,9 +3,5 @@ export const TodoListItem = ({ label, important = false }) => {
     color: important ? "tomato" : "black",
   };
 
-  return (
-    <li>
-      <span style={itemStyle}>{label}</span>
-    </li>
-  );
+  return <span style={itemStyle}>{label}</span>;
 };

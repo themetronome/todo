@@ -1,10 +1,12 @@
 import { TodoListItem } from "./TodoListItem";
 
-export const TodoList = () => {
-  return (
-    <ul>
-      <TodoListItem label="mastering js" important />
-      <TodoListItem label="learn react" />
-    </ul>
-  );
+export const TodoList = ({ todos }) => {
+  const elements = todos.map((item) => {
+    return (
+      <li key={item.id}>
+        <TodoListItem {...item} />
+      </li>
+    );
+  });
+  return <ul>{elements}</ul>;
 };
