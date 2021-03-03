@@ -1,6 +1,9 @@
 import { AppHeader } from "./AppHeader";
 import { SearchField } from "./SearchField";
 import { TodoList } from "./TodoList";
+import { ItemStatusFilter } from "./ItemStatusFilter";
+
+import "./App.css";
 
 export const App = () => {
   const todoData = [
@@ -22,9 +25,13 @@ export const App = () => {
   ];
 
   return (
-    <div>
-      <AppHeader />
-      <SearchField />
+    <div className="todoApp">
+      <AppHeader toDo={1} done={3} />
+      <div className="topPanel d-flex">
+        <SearchField />
+        <ItemStatusFilter />
+      </div>
+
       <TodoList todos={todoData} />
     </div>
   );
