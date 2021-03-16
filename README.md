@@ -1,1 +1,1 @@
-simple todo
+dumb todo application
