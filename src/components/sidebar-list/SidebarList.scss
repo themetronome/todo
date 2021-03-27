@@ -1,6 +1,20 @@
 .sidebar-list {
   margin-bottom: 40px;
 
+  &__add-button {
+    svg,
+    span {
+      opacity: 0.5;
+    }
+
+    &:hover {
+      svg,
+      span {
+        opacity: 1;
+      }
+    }
+  }
+
   li {
     display: flex;
     align-items: center;
