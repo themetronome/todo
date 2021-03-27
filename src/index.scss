@@ -29,3 +29,34 @@
     padding: 60px 20px;
   }
 }
+
+.button {
+  background-color: #4dd599;
+  border-radius: 5px;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken(#4dd599, 10%);
+  }
+
+  &:active {
+    background-color: darken(#4dd599, 20%);
+  }
+}
+
+.field {
+  background-color: #fff;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 8px 10px;
+  width: 100%;
+  font-family: Lato, sans-serif;
+
+  &:focus {
+    border-color: #dbdbdb;
+  }
+}
