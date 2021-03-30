@@ -8,18 +8,43 @@ import closeIcon from '../../assets/images/close.svg'
 
 import './AddGroupPopup.scss'
 
-export const AddGroupPopup = ({ colors, isOpened }) => {
+export const AddGroupPopup = ({ colors, isOpened, onAddItem }) => {
   const [selectedColor, setColor] = useState(colors[0].id)
+  const [inputValue, setInputValue] = useState('')
+
+  const onClosePopup = () => {
+    isOpened(false)
+    setInputValue('')
+    setColor(colors[0].id)
+  }
+
+  const onPopupSubmit = () => {
+    !inputValue
+      ? alert('Введите название группы дел')
+      : onAddItem({
+          id: Math.random() * 10,
+          name: inputValue,
+          color: colors.filter(color => color.id === selectedColor)[0].name,
+        })
+
+    onClosePopup()
+  }
 
   return (
     <div className='sidebar-list__group-popup'>
       <img
-        onClick={() => isOpened(false)}
+        onClick={onClosePopup}
         src={closeIcon}
         alt='Закрыть'
         className='sidebar-list__group-popup-close-btn'
       />
-      <input className='field' type='text' placeholder='Название группы' />
+      <input
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+        className='field'
+        type='text'
+        placeholder='Название группы'
+      />
       <div className='sidebar-list__group-popup-colors'>
         {db.colors.map(color => (
           <Badge
@@ -30,7 +55,9 @@ export const AddGroupPopup = ({ colors, isOpened }) => {
           />
         ))}
       </div>
-      <button className='button'>Добавить</button>
+      <button onClick={onPopupSubmit} className='button'>
+        Добавить
+      </button>
     </div>
   )
 }
