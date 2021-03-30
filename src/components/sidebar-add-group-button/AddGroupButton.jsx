@@ -5,7 +5,7 @@ import { AddGroupPopup } from '../sidebar-add-group-popup'
 
 import db from '../../mock/db.json'
 
-export const AddGroupButton = () => {
+export const AddGroupButton = ({ onAddItem }) => {
   const [isPopupVisible, setPopupVisibility] = useState(false)
 
   return (
@@ -39,11 +39,13 @@ export const AddGroupButton = () => {
                 />
               </svg>
             ),
-            title: 'Добавить категорию',
+            name: 'Добавить категорию',
           },
         ]}
       />
-      {isPopupVisible && <AddGroupPopup colors={db.colors} isOpened={setPopupVisibility} />}
+      {isPopupVisible && (
+        <AddGroupPopup onAddItem={onAddItem} colors={db.colors} isOpened={setPopupVisibility} />
+      )}
     </>
   )
 }

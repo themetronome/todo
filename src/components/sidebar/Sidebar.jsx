@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { SidebarList } from '../sidebar-list/'
 import { AddGroupButton } from '../sidebar-add-group-button'
@@ -6,6 +6,20 @@ import { AddGroupButton } from '../sidebar-add-group-button'
 import db from '../../mock/db.json'
 
 export const Sidebar = () => {
+  const [listItems, setListItems] = useState(
+    db.lists.map(item => {
+      item.color = db.colors.filter(color => color.id === item.colorId)[0].name
+
+      return item
+    }),
+  )
+
+  const addListItemFromInput = newListItem => {
+    const updatedList = [...listItems, newListItem]
+
+    setListItems(updatedList)
+  }
+
   return (
     <div className='todo__sidebar'>
       <SidebarList
@@ -25,30 +39,13 @@ export const Sidebar = () => {
                 />
               </svg>
             ),
-            title: 'Все задачи',
+            name: 'Все задачи',
             active: true,
           },
         ]}
       />
-      <SidebarList
-        items={[
-          {
-            color: 'green',
-            title: 'Покупки',
-          },
-          {
-            color: 'blue',
-            title: 'Фронтенд',
-          },
-          {
-            color: 'pink',
-            title: 'Чтение',
-            active: true,
-          },
-        ]}
-        isRemovable
-      />
-      <AddGroupButton color={db.colors} />
+      <SidebarList items={listItems} isRemovable />
+      <AddGroupButton onAddItem={addListItemFromInput} color={db.colors} />
     </div>
   )
 }
