@@ -44,7 +44,7 @@ export const Sidebar = () => {
           },
         ]}
       />
-      <SidebarList items={listItems} isRemovable />
+      <SidebarList items={listItems} isRemovable onRemove={item => console.log(item)} />
       <AddGroupButton onAddItem={addListItemFromInput} color={db.colors} />
     </div>
   )

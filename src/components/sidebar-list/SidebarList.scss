@@ -1,4 +1,6 @@
 .sidebar-list {
+  $this: &;
+
   margin-bottom: 40px;
 
   &__add-button {
@@ -22,6 +24,22 @@
     align-items: center;
     padding: 8px 10px;
     margin-bottom: 4px;
+
+    &:hover #{$this}__remove-icon {
+      opacity: 0.3;
+    }
+
+    #{$this}__remove-icon {
+      opacity: 0;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    span {
+      flex: 1;
+    }
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.7);
